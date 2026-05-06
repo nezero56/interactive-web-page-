@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyFlow Planner</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    class="text-gray-800 min-h-screen transition-all duration-500"
+    style="background-image: url('https://images.unsplash.com/photo-1497864149936-d3163f0c0f4b'); background-size: cover; background-position: center; background-attachment: fixed;"
+  >
+    <!-- NAVBAR -->
+    <nav
+      class="bg-white bg-opacity-90 shadow p-4 flex justify-between items-center"
+    >
+      <h1 class="text-xl font-bold text-blue-600">StudyFlow</h1>
+
+      <div id="hamburger" class="md:hidden text-2xl cursor-pointer">☰</div>
+
+      <ul id="navLinks" class="hidden md:flex gap-6 font-medium">
+        <li class="nav-item text-blue-600 cursor-pointer">Home</li>
+        <li class="nav-item cursor-pointer">Tasks</li>
+
+        <li class="relative">
+          <span id="dropdownBtn" class="cursor-pointer">Resources ▼</span>
+          <ul
+            id="dropdownMenu"
+            class="hidden absolute bg-white mt-2 p-2 rounded shadow"
+          >
+            <li class="p-1 hover:bg-gray-200">Study Tips</li>
+            <li class="p-1 hover:bg-gray-200">Time Management</li>
+          </ul>
+        </li>
+
+        <li class="nav-item cursor-pointer">Profile</li>
+      </ul>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="p-6 space-y-10">
+      <!-- HERO -->
+      <section
+        class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6"
+      >
+        <div class="flex-1">
+          <h2 class="text-3xl font-bold text-blue-600">
+            Plan Your Day Smarter
+          </h2>
+          <p class="mt-2 text-gray-700">
+            Stay organized, manage your study tasks, and keep track of your
+            daily goals with StudyFlow.
+          </p>
+        </div>
+
+        <img
+          src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe"
+          class="w-full md:w-1/3 rounded-lg shadow"
+        />
+      </section>
+
+      <!-- TEXT + THEME -->
+      <section class="bg-white p-4 rounded shadow">
+        <p id="text">Success starts with a well-planned day.</p>
+
+        <button
+          id="changeTextBtn"
+          class="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+        >
+          Motivate Me
+        </button>
+
+        <button
+          id="themeToggle"
+          class="bg-gray-800 text-white px-4 py-2 rounded mt-2 ml-2"
+        >
+          Toggle Mode
+        </button>
+      </section>
+
+      <!-- INPUT -->
+      <section class="bg-white p-4 rounded shadow">
+        <input
+          id="userInput"
+          type="text"
+          placeholder="Enter today's goal"
+          class="border p-2 mr-2"
+        />
+
+        <button
+          id="displayBtn"
+          class="bg-green-500 text-white px-4 py-2 rounded"
+        >
+          Add Goal
+        </button>
+
+        <p id="displayOutput" class="mt-2 font-semibold text-blue-600"></p>
+      </section>
+
+      <!-- LIST -->
+      <section class="bg-white p-4 rounded shadow">
+        <input
+          id="search"
+          type="text"
+          placeholder="Search tasks..."
+          class="border p-2 mb-2 w-full"
+        />
+
+        <div class="flex gap-2">
+          <input
+            id="itemInput"
+            type="text"
+            placeholder="Add new task"
+            class="border p-2 flex-1"
+          />
+          <button
+            id="addItemBtn"
+            class="bg-purple-500 text-white px-4 py-2 rounded"
+          >
+            Add
+          </button>
+        </div>
+
+        <ul id="itemList" class="mt-4 space-y-2"></ul>
+      </section>
+
+      <!-- CARDS -->
+      <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="card bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Study Session</h3>
+            <p class="text-sm text-gray-600">Focus on coursework</p>
+            <button
+              class="addCard mt-3 bg-blue-500 text-white px-3 py-1 rounded"
+            >
+              Add to Tasks
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="card bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Group Work</h3>
+            <p class="text-sm text-gray-600">Collaborate with peers</p>
+            <button
+              class="addCard mt-3 bg-blue-500 text-white px-3 py-1 rounded"
+            >
+              Add to Tasks
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="card bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Exercise</h3>
+            <p class="text-sm text-gray-600">Stay healthy</p>
+            <button
+              class="addCard mt-3 bg-blue-500 text-white px-3 py-1 rounded"
+            >
+              Add to Tasks
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="card bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="font-bold text-lg">Reading</h3>
+            <p class="text-sm text-gray-600">Improve knowledge</p>
+            <button
+              class="addCard mt-3 bg-blue-500 text-white px-3 py-1 rounded"
+            >
+              Add to Tasks
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white bg-opacity-90 text-center p-4 mt-6">
+      © 2026 StudyFlow Planner
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      // NAV ACTIVE
+      const navItems = document.querySelectorAll(".nav-item");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navItems.forEach((i) => i.classList.remove("text-blue-600"));
+          item.classList.add("text-blue-600");
+        });
+      });
+
+      // DROPDOWN
+      document.getElementById("dropdownBtn").addEventListener("click", () => {
+        document.getElementById("dropdownMenu").classList.toggle("hidden");
+      });
+
+      // HAMBURGER
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("navLinks").classList.toggle("hidden");
+      });
+
+      // TEXT CHANGE
+      document.getElementById("changeTextBtn").addEventListener("click", () => {
+        document.getElementById("text").textContent =
+          "Discipline today leads to success tomorrow!";
+      });
+
+      // DARK MODE
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("bg-gray-900");
+        document.body.classList.toggle("text-white");
+      });
+
+      // DISPLAY INPUT
+      document.getElementById("displayBtn").addEventListener("click", () => {
+        const value = document.getElementById("userInput").value;
+        document.getElementById("displayOutput").textContent =
+          "Today's Goal: " + value;
+      });
+
+      // LIST
+      const list = document.getElementById("itemList");
+
+      document.getElementById("addItemBtn").addEventListener("click", () => {
+        const input = document.getElementById("itemInput");
+
+        if (input.value.trim() !== "") {
+          const li = document.createElement("li");
+          li.textContent = input.value;
+          li.className = "bg-gray-200 p-2 rounded cursor-pointer";
+
+          li.addEventListener("click", () => li.remove());
+
+          list.appendChild(li);
+          input.value = "";
+        }
+      });
+
+      // SEARCH
+      document.getElementById("search").addEventListener("keyup", function () {
+        const filter = this.value.toLowerCase();
+        const items = list.getElementsByTagName("li");
+
+        Array.from(items).forEach((item) => {
+          item.style.display = item.textContent.toLowerCase().includes(filter)
+            ? ""
+            : "none";
+        });
+      });
+
+      // CARD ADD
+      document.querySelectorAll(".addCard").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const title = btn.parentElement.querySelector("h3").textContent;
+
+          const li = document.createElement("li");
+          li.textContent = title;
+          li.className = "bg-green-200 p-2 rounded cursor-pointer";
+
+          li.addEventListener("click", () => li.remove());
+
+          list.appendChild(li);
+        });
+      });
+    </script>
+  </body>
+</html>
