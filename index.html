@@ -1,118 +1,495 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StudyFlow Planner</title>
+     <title>FitLife Gym - DOM Manipulation Assignment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e63946',
+            'primary-dark': '#c1121f',
+            accent: '#f4a261',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-gray-900 text-white shadow-lg dark:bg-gray-800">
+    <div class="flex items-center space-x-2 text-xl font-bold text-red-500">
+      <i class="fas fa-dumbbell"></i>
+      <span> WomanInFitLife</span>
+    </div>
+    <ul class="hidden md:flex items-center space-x-1" id="navLinks">
+      <li><a href="#home" class="nav-link active px-4 py-2 rounded-lg transition-colors hover:bg-red-500">Home</a></li>
+      <li><a href="#activities" class="nav-link px-4 py-2 rounded-lg transition-colors hover:bg-red-500">Activities</a></li>
+      <li><a href="#goals" class="nav-link px-4 py-2 rounded-lg transition-colors hover:bg-red-500">My Plan</a></li>
+      <li class="relative dropdown">
+        <a href="#" class="nav-link dropdown-toggle px-4 py-2 rounded-lg transition-colors hover:bg-red-500 flex items-center" id="dropdownToggle">
+          More <i class="fas fa-chevron-down ml-1 transition-transform duration-300"></i>
+        </a>
+        <ul class="dropdown-menu absolute top-full left-0 mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-lg min-w-48 overflow-hidden opacity-0 invisible transition-all duration-300" id="dropdownMenu">
+          <li><a href="#about" class="block px-4 py-3 text-sm hover:bg-red-500">About</a></li>
+          <li><a href="#contact" class="block px-4 py-3 text-sm hover:bg-red-500">Contact</a></li>
+          <li><a href="#faq" class="block px-4 py-3 text-sm hover:bg-red-500">FAQ</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="theme-btn bg-white/10 border border-white/20 text-white px-4 py-2 rounded-full text-sm hover:bg-red-500 hover:border-red-500 transition-colors" id="themeToggle">
+      <i class="fas fa-moon"></i> Dark Mode
+    </button>
+    <button class="hamburger md:hidden flex flex-col space-y-1 p-2 bg-transparent border-none cursor-pointer" id="hamburger">
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+    </button>
+  </nav>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-
-  <body
-    class="text-gray-800 min-h-screen transition-all duration-500"
-    style="background-image: url('https://images.unsplash.com/photo-1497864149936-d3163f0c0f4b'); background-size: cover; background-position: center; background-attachment: fixed;"
-  >
-   
-    <nav-
-      class="bg-blue-900 bg-opacity-=35 shadow p-4 flex justify-around items-center"
-    >
-      <h1 class="text-3xl font-bold text-white">StudyFlow</h1>
-
-      <div id="hamburger" class="md:hidden text-2xl cursor-pointer">☰</div>
-
-      <ul id="navLinks" class="hidden md:flex gap-6 font-medium">
-        <li class="nav-item text-white cursor-pointer">Home</li>
-        <li class="nav-item text-white cursor-pointer">Tasks</li>
-
-        <li class="relative">
-          <span id="dropdownBtn" class="cursor-pointer">Resources ▼</span>
-          <ul
-            id="dropdownMenu"
-            class="hidden absolute bg-white mt-2 p-2 rounded shadow"
-          >
-            <li class="p-1 hover:bg-gray-200">Study Tips</li>
-            <li class="p-1 hover:bg-gray-200">Time Management</li>
-          </ul>
-        </li>
-
-        <li class="nav-item cursor-pointer">Profile</li>
-      </ul>
-    </nav>
-
-   
-    <main class="p-6 space-y-10">
-      
-      <section
-        class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-6"
-      >
-        <div class="flex-1">
-          <h2 class="text-xl font-bold text-blue-600">
-            Plan Your Day Smarter
-          </h2>
-          <p class="mt-2 text-gray-700">
-            Stay organized, manage your study tasks, and keep track .
-            
-          </p>
-        </div>
-
-        <img
-          src="https://media.istockphoto.com/id/1432935110/photo/woman-works-on-laptop-remotely-in-house-on-nature.jpg?s=1024x1024&w=is&k=20&c=oVxKAzwrJQyQrDWkxNAHCkauOfmnNu4sXHIcoAJcz1g="
-          class="h-20 w-25 md: rounded-md shadow"
-        />
-      </section>
-
-
-      <section class="bg-blue-900 p-0 rounded shaadow">
-        <p id="text">Success starts with a well-planned day.</p>
-
-        <button id="changeTextBtn"
-               class="bg-blue-500 text-white px-2 py-2 rounded mt-4 hover:bg-blue-600 transition"
-        >
-          Motivate Me
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center filter:blur(4px) text-center bg-[url('images/hero.jpg')] bg-cover bg-center"id="home">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative max-w-4xl px-6">
+      <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+        Transform Your <span class="text-red-500">Body</span>,<br>Transform Your Life
+      </h1>
+      <p id="motivationText" class="text-lg text-gray-200 mb-8 italic min-h-12 transition-opacity duration-300">"Push yourself, because no one else is going to do it for you."</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="btn-primary bg-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-600 transform hover:-translate-y-0.5 transition-all duration-300" id="changeTextBtn">
+          <i class="fas fa-quote-left mr-2"></i> New Motivation
         </button>
-        <button id="themeToggle"
-                class="bg-gray-800 text-white px-4 py-2 rounded mt-2 ml-2">
-              Toggle Theme
-            </button>
+        <button class="btn-outline border-2 border-white/50 text-white px-6 py-3 rounded-lg hover:bg-white/10 hover:border-white transition-all duration-300" id="scrollToActivities">
+          <i class="fas fa-arrow-down mr-2"></i> Explore Activities
+        </button>
+      </div>
+    </div>
+  </section>
 
-          <section class="bg-white p-4 rounded shadow">
-            <input id="userInput"
-                  type="text"
-                  placeholder="Enter today's goal"
-                  class="border p-2 mr-2"
-            
-      </section>
-      </section>  
+  <!-- Activities Section -->
+  <section class="py-20 px-6 max-w-7xl mx-auto" id="activities">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">Gym Activities</h2>
+      <p class="text-gray-600 dark:text-gray-400 text-lg">Choose from our variety of fitness activities to build your personalized workout plan</p>
 
-      <button id="displayBtn"
-              class="bg-green-500 text-white px-4 py-2 rounded"
-      >
-        Add Goal
-      </button>
-      <p id="displayOutput" class="mt-2 font-semibold text-blue-600"></p>
-      </section>
+      <div 
 
-      <section class="bg-white p-4 rounded shadow">
-        <input 
-          id="search"
-          type="text"
-          placeholder="Search tasks ..."
-          class="border p-2 mb-2 w-full"
-        />  
+        <img src="images/cardio.jpg" alt="Cardio Training" class="w-full h-64 object-cover  rounded-lg mt-8 shadow-lg">
+      
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
+        <div class="w-30 h-30 bg-gradient-to-br from-red-500 to-orange-400 rounded-xl flex items-center justify-center text-white text-xl">
+          <i class="fas fa-running"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Cardio Training</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm flex-1">High-intensity cardio sessions to boost your heart health and burn calories effectively.</p>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-clock text-red-500"></i> 45 min
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-fire text-red-500"></i> 300 cal
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-users text-red-500"></i> Group
+          </li>
+        </ul>
+        <button class="btn-card w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transform hover:-translate-y-0.5 transition-all duration-300" data-activity="Cardio Training">
+          <i class="fas fa-plus mr-2"></i> Add to Plan
+        </button>
+      </div>
+      <div class="card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
+        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-400 rounded-xl flex items-center justify-center text-white text-xl">
+          <i class="fas fa-dumbbell"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Strength Training</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm flex-1">Build muscle and strength with our comprehensive weight training programs.</p>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-clock text-red-500"></i> 60 min
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-weight-hanging text-red-500"></i> Weights
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-user text-red-500"></i> Personal
+          </li>
+        </ul>
+        <button class="btn-card w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transform hover:-translate-y-0.5 transition-all duration-300" data-activity="Strength Training">
+          <i class="fas fa-plus mr-2"></i> Add to Plan
+        </button>
+      </div>
+      <div class="card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
+        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-400 rounded-xl flex items-center justify-center text-white text-xl">
+          <i class="fas fa-spa"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Yoga & Flexibility</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm flex-1">Improve flexibility, balance, and mental well-being with our yoga sessions.</p>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-clock text-red-500"></i> 50 min
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-peace text-red-500"></i> Relax
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-users text-red-500"></i> Group
+          </li>
+        </ul>
+        <button class="btn-card w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transform hover:-translate-y-0.5 transition-all duration-300" data-activity="Yoga & Flexibility">
+          <i class="fas fa-plus mr-2"></i> Add to Plan
+        </button>
+      </div>
+      <div class="card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
+        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-400 rounded-xl flex items-center justify-center text-white text-xl">
+          <i class="fas fa-swimmer"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Swimming</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm flex-1">Low-impact full-body workout in our Olympic-sized swimming pool.</p>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-clock text-red-500"></i> 45 min
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-water text-red-500"></i> Pool
+          </li>
+          <li class="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full">
+            <i class="fas fa-user text-red-500"></i> Personal
+          </li>
+        </ul>
+        <button class="btn-card w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transform hover:-translate-y-0.5 transition-all duration-300" data-activity="Swimming">
+          <i class="fas fa-plus mr-2"></i> Add to Plan
+        </button>
+      </div>
+    </div>
+  </section>
 
-        <div class="flex gap-2"
-          <input 
-            id="itemInput"
-            type="text"
-            placeholder="Enter a new task"
-            class="border p-2 flex-1"
-          />
-          <button id="addItemBtn" class="bg-blue-500 text-white px-4 py-2 rounded">
-            Add 
+  <!-- My Plan Section -->
+  <section class="py-20 px-6 max-w-7xl mx-auto" id="goals">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">My Fitness Plan</h2>
+      <p class="text-gray-600 dark:text-gray-400 text-lg">Build your personalized workout plan and track your fitness goals</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+          <i class="fas fa-plus-circle text-red-500"></i> Add Goals & Activities
+        </h3>
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <input type="text" class="input-field flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:border-red-500 outline-none transition-colors" id="goalInput" placeholder="Enter your fitness goal or activity...">
+          <button class="btn-primary bg-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-600 whitespace-nowrap transition-colors" id="addGoalBtn">
+            <i class="fas fa-plus mr-2"></i> Add
           </button>
         </div>
+        <div class="relative mb-4">
+          <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input type="text" class="input-field w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:border-red-500 outline-none transition-colors" id="searchInput" placeholder="Search your goals...">
+        </div>
+        <ul class="goal-list space-y-3" id="goalList">
+          <li class="empty-msg text-gray-500 dark:text-gray-400 italic text-sm" id="emptyMsg">No goals added yet. Start building your fitness plan!</li>
+        </ul>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+          <i class="fas fa-clipboard-list text-red-500"></i> Selected Activities
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">This section shows activities you've added from the cards above. Use the search to filter your plan.</p>
+      </div>
+    </div>
+  </section>
 
-        <ul id="itemList" class="mt-4 space-y-2"></ul>
-        </section>
+  <!-- Join Section -->
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">Join FitLife Today</h2>
+      <p class="text-gray-600 dark:text-gray-400 text-lg">Start your fitness journey with us</p>
+    </div>
+    <div class="max-w-md mx-auto flex flex-col items-center gap-6">
+      <input type="text" class="input-field w-full text-center px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:border-red-500 outline-none transition-colors" id="nameInput" placeholder="Enter your name">
+      <button class="btn-primary bg-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors" id="joinBtn">
+        <i class="fas fa-user-plus mr-2"></i> Join Now
+      </button>
+      <div class="welcome-msg hidden bg-gradient-to-r from-red-500 to-orange-400 text-white px-8 py-4 rounded-xl font-semibold text-center w-full" id="welcomeMsg"></div>
+    </div>
+  </section>
 
-        
+  <!-- Footer -->
+  <footer class="bg-gray-900 dark:bg-gray-800 text-gray-300 py-12 px-6 mt-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-700">
+        <div>
+          <div class="flex items-center gap-2 text-xl font-bold text-red-500 mb-3">
+            <i class="fas fa-dumbbell"></i>
+            <span>FitLife Gym</span>
+          </div>
+          <p class="text-sm">Your journey to a healthier, stronger you starts here.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-sm hover:text-red-500 transition-colors">Home</a></li>
+            <li><a href="#activities" class="text-sm hover:text-red-500 transition-colors">Activities</a></li>
+            <li><a href="#goals" class="text-sm hover:text-red-500 transition-colors">My Plan</a></li>
+            <li><a href="#about" class="text-sm hover:text-red-500 transition-colors">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact Us</h4>
+          <div class="space-y-2 text-sm">
+            <p class="flex items-center gap-2"><i class="fas fa-envelope text-red-500 w-4"></i> info@fitlifegym.com</p>
+            <p class="flex items-center gap-2"><i class="fas fa-phone text-red-500 w-4"></i> (555) 123-4567</p>
+            <p class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-red-500 w-4"></i> 123 Fitness St, Gym City</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-gray-500 text-sm">
+        <p>&copy; 2024 FitLife Gym. All rights reserved. | DOM Manipulation Assignment</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================
+    // FitLife Gym — DOM methods used: getElementById, querySelector, querySelectorAll,
+    // innerText, innerHTML, style, classList, addEventListener,
+    // createElement, appendChild, remove
+    // ============================================================
+
+
+    // ── 1. NAV LINK HIGHLIGHT (one active at a time) ──────────────
+    let navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        // remove active from all links
+        navLinks.forEach(function (l) {
+          l.classList.remove("active");
+        });
+        // set active on clicked link
+        link.classList.add("active");
+      });
+    });
+
+
+    // ── 2. DROPDOWN MENU ─────────────────────────────────────────
+    let dropdownToggle = document.getElementById("dropdownToggle");
+    let dropdownMenu   = document.getElementById("dropdownMenu");
+    let dropdownParent = document.querySelector(".dropdown");
+
+    dropdownToggle.addEventListener("click", function (event) {
+      event.preventDefault();
+      dropdownMenu.classList.toggle("opacity-0");
+      dropdownMenu.classList.toggle("invisible");
+      dropdownParent.classList.toggle("open");
+    });
+
+    // close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      if (!dropdownParent.contains(event.target)) {
+        dropdownMenu.classList.add("opacity-0");
+        dropdownMenu.classList.add("invisible");
+        dropdownParent.classList.remove("open");
+      }
+    });
+
+
+    // ── 3. HAMBURGER MENU ────────────────────────────────────────
+    let hamburger = document.getElementById("hamburger");
+    let navLinksMenu = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", function () {
+      hamburger.classList.toggle("open");
+      navLinksMenu.classList.toggle("hidden");
+    });
+
+
+    // ── 4. MOTIVATION TEXT (change text on button click) ─────────
+    let motivationText = document.getElementById("motivationText");
+    let changeTextBtn  = document.getElementById("changeTextBtn");
+
+    let quotes = [
+      '"Push yourself, because no one else is going to do it for you."',
+      '"The body achieves what the mind believes."',
+      '"Train insane or remain the same."',
+      '"Your only limit is you."',
+      '"Sweat is just fat crying."',
+      '"Wake up. Work out. Look hot. Kick ass."',
+      '"No pain, no gain. Shut up and train."',
+    ];
+
+    let quoteIndex = 0;
+
+    changeTextBtn.addEventListener("click", function () {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      motivationText.innerText = quotes[quoteIndex];
+    });
+
+
+    // ── 5. LIGHT / DARK MODE ─────────────────────────────────────
+    let themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.addEventListener("click", function () {
+      document.documentElement.classList.toggle("dark");
+
+      let isDark = document.documentElement.classList.contains("dark");
+      themeToggle.innerHTML = isDark
+        ? '<i class="fas fa-sun"></i> Light Mode'
+        : '<i class="fas fa-moon"></i> Dark Mode';
+    });
+
+
+    // ── 6. SCROLL TO ACTIVITIES BUTTON ───────────────────────────
+    let scrollBtn = document.getElementById("scrollToActivities");
+
+    scrollBtn.addEventListener("click", function () {
+      document.querySelector("#activities").scrollIntoView({ behavior: "smooth" });
+    });
+
+
+    // ── 7. GOAL LIST — add, remove, search ───────────────────────
+    let goalInput  = document.getElementById("goalInput");
+    let addGoalBtn = document.getElementById("addGoalBtn");
+    let goalList   = document.getElementById("goalList");
+    let emptyMsg   = document.getElementById("emptyMsg");
+    let searchInput = document.getElementById("searchInput");
+
+    function updateEmptyMessage() {
+      if (goalList.children.length === 0) {
+        emptyMsg.classList.remove("hidden");
+      } else {
+        emptyMsg.classList.add("hidden");
+      }
+    }
+
+    function addItem(text) {
+      // create list item
+      let li = document.createElement("li");
+      li.classList.add("goal-item", "flex", "items-center", "gap-3", "p-3", "bg-gray-50", "dark:bg-gray-700", "rounded-lg", "border", "border-gray-200", "dark:border-gray-600", "text-sm", "text-gray-900", "dark:text-white", "transition-opacity", "cursor-pointer");
+
+      // icon
+      let icon = document.createElement("i");
+      icon.classList.add("fas", "fa-check-circle", "item-icon", "text-red-500", "text-sm");
+
+      // label
+      let label = document.createElement("span");
+      label.innerText = text;
+
+      // remove button
+      let removeBtn = document.createElement("button");
+      removeBtn.classList.add("btn-remove", "bg-transparent", "border-none", "text-gray-400", "cursor-pointer", "p-1", "rounded", "hover:text-red-500", "hover:bg-red-50", "dark:hover:bg-red-900/20", "transition-colors", "ml-auto", "text-sm");
+      removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+      removeBtn.title = "Remove";
+
+      // ── 8. ELEMENT REMOVAL — click remove button ──
+      removeBtn.addEventListener("click", function () {
+        li.remove();
+        updateEmptyMessage();
+      });
+
+      li.appendChild(icon);
+      li.appendChild(label);
+      li.appendChild(removeBtn);
+      goalList.appendChild(li);
+
+      updateEmptyMessage();
+    }
+
+    // add on button click
+    addGoalBtn.addEventListener("click", function () {
+      let value = goalInput.value.trim();
+      if (value === "") return;
+      addItem(value);
+      goalInput.value = "";
+    });
+
+    // add on Enter key
+    goalInput.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        addGoalBtn.click();
+      }
+    });
+
+
+    // ── 9. SEARCH / FILTER LIST ──────────────────────────────────
+    searchInput.addEventListener("input", function () {
+      let keyword = searchInput.value.toLowerCase();
+      let items   = document.querySelectorAll(".goal-item");
+
+      items.forEach(function (item) {
+        let text = item.querySelector("span").innerText.toLowerCase();
+        if (text.includes(keyword)) {
+          item.classList.remove("hidden");
+        } else {
+          item.classList.add("hidden");
+        }
+      });
+    });
+
+
+    // ── 10. ACTIVITY CARDS — add to plan ─────────────────────────
+    let cardButtons = document.querySelectorAll(".btn-card");
+
+    cardButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        let activityName = btn.getAttribute("data-activity");
+        addItem(activityName);
+
+        // visual feedback on the button
+        btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+        btn.classList.add("bg-green-500", "hover:bg-green-600");
+        btn.classList.remove("bg-red-500", "hover:bg-red-600");
+
+        setTimeout(function () {
+          btn.innerHTML = '<i class="fas fa-plus"></i> Add to Plan';
+          btn.classList.remove("bg-green-500", "hover:bg-green-600");
+          btn.classList.add("bg-red-500", "hover:bg-red-600");
+        }, 1500);
+
+        // scroll to goals section
+        document.querySelector("#goals").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+
+    // ── 11. JOIN — capture input and display welcome message ──────
+    let nameInput  = document.getElementById("nameInput");
+    let joinBtn    = document.getElementById("joinBtn");
+    let welcomeMsg = document.getElementById("welcomeMsg");
+
+    joinBtn.addEventListener("click", function () {
+      let name = nameInput.value.trim();
+      if (name === "") {
+        welcomeMsg.classList.remove("hidden");
+        welcomeMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> Please enter your name!';
+        welcomeMsg.classList.add("bg-red-500");
+        welcomeMsg.classList.remove("bg-gradient-to-r", "from-red-500", "to-orange-400");
+        return;
+      }
+
+      welcomeMsg.classList.remove("hidden");
+      welcomeMsg.innerHTML =
+        '<i class="fas fa-trophy mr-2"></i> Welcome to FitLife, <strong>' +
+        name +
+        "</strong>! Let's crush your goals! 💪";
+      welcomeMsg.classList.remove("bg-red-500");
+      welcomeMsg.classList.add("bg-gradient-to-r", "from-red-500", "to-orange-400");
+      nameInput.value = "";
+    });
+
+    // also trigger on Enter
+    nameInput.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        joinBtn.click();
+      }
+    });
+  </script>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\USER\OneDrive\Documents\New folder\OneDrive\Documents\Frontend Fundamentals\Dom assignment\index.html
